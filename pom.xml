@@ -29,7 +29,6 @@
             <version>2.3.1</version>
             <scope>provided</scope>
         </dependency>
-
 <!--        &lt;!&ndash; JSTL tags &ndash;&gt;-->
 <!--        <dependency>-->
 <!--            <groupId>jstl</groupId>-->

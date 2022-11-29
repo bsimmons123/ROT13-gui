@@ -1,21 +1,19 @@
 package org.example.servlets;
 
 import org.example.model.ROT13;
-import org.omg.CORBA.INTERNAL;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-@WebServlet(urlPatterns = "/cypher.start")
-public class CypherServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/cipher.start")
+public class CipherServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @Override
@@ -25,10 +23,14 @@ public class CypherServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String values = req.getParameter("input-value"); // getting values from JSP page
+        String values = req.getParameter("input_value"); // getting values from JSP page
 
-        req.setAttribute("hashedValues", hashIndexedValues(hashValues(values)));
-        doGet(req, resp);
+        String hashedValues = hashIndexedValues(hashValues(values));
+
+        String jsonStr = "{\"hashedValues\": \""+hashedValues+"\"}"; // write output back in JSON format
+        PrintWriter out = resp.getWriter();
+        out.print(jsonStr);
+        out.flush();
     }
 
     private ArrayList<Integer> hashValues(String values){
