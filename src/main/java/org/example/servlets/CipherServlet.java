@@ -27,8 +27,9 @@ public class CipherServlet extends HttpServlet {
         String values = req.getParameter("input_value"); // getting values from JSP page
         // Used to store Json data
         HashedValue hashedValue = new HashedValue();
+
         // Set hashedValue in JsonModel
-        hashedValue.setValue(hashIndexedValues(hashValues(values)));
+        hashedValue.setValue(rot13(values));
         // create JSON
         Gson gson = new Gson();
         String json = gson.toJson(hashedValue);// write output back in JSON format
@@ -40,27 +41,24 @@ public class CipherServlet extends HttpServlet {
         out.flush();
     }
 
-    private ArrayList<Integer> hashValues(String values){
-        ArrayList<Integer> indexValues = new ArrayList<>();
-        for (char hashVal:  values.toCharArray()) {
-            int hashedIndexValue = ROT13.CYPHER.hash.indexOf(hashVal);
-            if (hashedIndexValue >= 0){
-                indexValues.add(hashedIndexValue);
-            }
+    /**
+     * Perform the ROT13 cipher
+     *
+     * author: <a href="https://stackoverflow.com/questions/8981296/rot-13-function-in-java">georgiecasey</a>
+     *
+     * @param input     Any string value
+     * @return          Hashes output
+     */
+    public static String rot13(String input) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+            if       (c >= 'a' && c <= 'm') c += 13;
+            else if  (c >= 'A' && c <= 'M') c += 13;
+            else if  (c >= 'n' && c <= 'z') c -= 13;
+            else if  (c >= 'N' && c <= 'Z') c -= 13;
+            sb.append(c);
         }
-        ArrayList<Integer> hashedIndexValues = new ArrayList<>();
-        for (Integer indexValue : indexValues) {
-            hashedIndexValues.add((indexValue + 13) % 26);
-        }
-
-        return hashedIndexValues;
-    }
-
-    private String hashIndexedValues(ArrayList<Integer> hashedIndexValues){
-        String hashedValues = "";
-        for (int value: hashedIndexValues) {
-            hashedValues += ROT13.CYPHER.hash.subSequence(value, value+1);
-        }
-        return hashedValues;
+        return sb.toString();
     }
 }

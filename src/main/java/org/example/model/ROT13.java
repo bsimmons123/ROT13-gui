@@ -4,7 +4,7 @@ public enum ROT13 {
     CYPHER("abcdefghijklmnopqrstuvwxyz");
 
     public final String hash;
-    private ROT13(String hash) {
+    ROT13(String hash) {
         this.hash = hash;
     }
 
