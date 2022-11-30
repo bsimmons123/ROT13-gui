@@ -1,5 +1,7 @@
 package org.example.servlets;
 
+import com.google.gson.Gson;
+import org.example.model.HashedValue;
 import org.example.model.ROT13;
 
 import javax.servlet.ServletException;
@@ -7,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -24,12 +25,18 @@ public class CipherServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String values = req.getParameter("input_value"); // getting values from JSP page
-
-        String hashedValues = hashIndexedValues(hashValues(values));
-
-        String jsonStr = "{\"hashedValues\": \""+hashedValues+"\"}"; // write output back in JSON format
+        // Used to store Json data
+        HashedValue hashedValue = new HashedValue();
+        // Set hashedValue in JsonModel
+        hashedValue.setValue(hashIndexedValues(hashValues(values)));
+        // create JSON
+        Gson gson = new Gson();
+        String json = gson.toJson(hashedValue);// write output back in JSON format
+        // write back to page
         PrintWriter out = resp.getWriter();
-        out.print(jsonStr);
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        out.print(json);
         out.flush();
     }
 
@@ -42,8 +49,8 @@ public class CipherServlet extends HttpServlet {
             }
         }
         ArrayList<Integer> hashedIndexValues = new ArrayList<>();
-        for(int i = 0; i < indexValues.size(); i++){
-            hashedIndexValues.add((indexValues.get(i)+13)%26);
+        for (Integer indexValue : indexValues) {
+            hashedIndexValues.add((indexValue + 13) % 26);
         }
 
         return hashedIndexValues;
