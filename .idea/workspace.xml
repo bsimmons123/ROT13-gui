@@ -11,8 +11,11 @@
   <component name="ChangeListManager">
     <list default="true" id="c15131b6-c320-4719-aa23-ec9c0d4ee83e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/ROT13.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model/ROT13.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/HashedValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model/HashedValue.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/servlets/CipherServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/servlets/CipherServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/images/background.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/js/AJAX.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/AJAX.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -225,6 +228,9 @@
       <workItem from="1669739613978" duration="1352000" />
       <workItem from="1669741824438" duration="17000" />
       <workItem from="1669765430561" duration="2815000" />
+      <workItem from="1669827588645" duration="103000" />
+      <workItem from="1669828347249" duration="99000" />
+      <workItem from="1670003611634" duration="1161000" />
     </task>
     <servers />
   </component>

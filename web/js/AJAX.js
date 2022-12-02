@@ -8,6 +8,7 @@ $(document).ready(function () {
             },
             success    : function(result){
                 $('#result').html("<br><span style='font-style: italic; border-bottom: 2px solid green;'>CIPHER: </span>"+result.value);
+                $('#originalInput').html("<br><span style='font-style: italic; border-bottom: 2px solid grey;'>ORIGINAL: </span>"+result.originalValue);
             },
             error : function(jqXHR, exception){
                 console.log('Error occurred!!');

@@ -30,6 +30,7 @@ public class CipherServlet extends HttpServlet {
 
         // Set hashedValue in JsonModel
         hashedValue.setValue(rot13(values));
+        hashedValue.setOriginalValue(values);
         // create JSON
         Gson gson = new Gson();
         String json = gson.toJson(hashedValue);// write output back in JSON format
