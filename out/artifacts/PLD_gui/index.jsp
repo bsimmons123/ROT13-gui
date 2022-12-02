@@ -23,6 +23,7 @@
             <input type="text" id="value_to_hash" name="input_value">
             <input class="btn btn-success begin-cypher" type="Submit" name="begin-cypher" value="Cypher!">
         </form>
+        <p id="originalInput"></p> <!-- This represents the output of hashed values -->
         <p id="result"></p> <!-- This represents the output of hashed values -->
     </div>
   </div>
